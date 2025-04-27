@@ -43,10 +43,10 @@ void menu()
     cout<<"4. Summary of sales"<<endl; // ano mas okay unahin yung flowchart or yung code?
     cout<<"5. Exit"<<endl; // an
 
-    cout<<"Choice: "; // ganto rin balak ko sana gawin kaso di pa na d discuss yung global function
-    cin>>menuChoice;
+    cout<<"Choice: "; // ganto rin balak ko sana gawin kaso di pa na d discuss yung global variable
+    // cin>>menuChoice;
 
-    return menuChoice;
+    // return menuChoice;
 }
 
 // int destinationType()
