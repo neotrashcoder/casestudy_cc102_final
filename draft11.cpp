@@ -66,9 +66,10 @@ void discountTypeList()
     cout<<"4. None"<<endl;
 }
 
-double convertToDestination(char destinationType) 
+double convertToDestinationDistance(char destinationTypeDistance) 
 {
-    switch(destinationType) {
+    switch(destinationTypeDistance) 
+    {
         case '1':
             return SM;
 
@@ -102,6 +103,56 @@ double convertToDestination(char destinationType)
 
             break;
     }
+}
+
+string convertToDestinationName(char destinationTypeName)
+{
+    string desName;
+    
+    if(destinationTypeName == '1') 
+    {
+        desName = "SM      ";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '2') 
+    {
+        desName = "PACIFIC ";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '3') 
+    {
+        desName = "SUMACAB ";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '4') 
+    {
+        desName = "STAROSA ";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '5') 
+    {
+        desName = "ZARAGOZA";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '6') 
+    {
+        desName = "LAPAZ   ";
+
+        return desName;
+    } 
+    else if(destinationTypeName == '7') 
+    {
+        desName = "TARLAC  ";
+
+        return desName;
+    } 
+
+    return desName;
 }
 
 double calculateTotalFare(double placeDest, int typeDisc)
@@ -152,22 +203,21 @@ int main()
 
     char destinationType;
     double destination; // destination becomes SM, etc
-
+    string destinationName;
+    string storeDestinationName[256];
+    int countDestination = 0;
+    
     int typeOfDiscount;
     double fareTotal;
     double storeFareTotal[256];
     int countFare = 0;
     
-    string destinationName;
-    string storeDestinationName[256];
-    int countDestination = 0;
-
     int countLimit = 0;
     int i; // used for loop iteration
 
     int r, c;
     string assignedSeat;
-    bool seatsArray[4][5];// pwede maging void
+    bool seatsArray[4][5]; // pwede maging void
     char rowLetter; 
     bool seatAssigned;
     int columnNumber;
@@ -215,8 +265,7 @@ int main()
                 }
                 else if(askDate == 'n')
                 {
-                    storeDate[countDate] = takeDate;
-                    countDate++;
+                    cout<<"Using the previous date."<<endl;
                     break;
                 }
                 else
@@ -232,18 +281,14 @@ int main()
                 cout<<"Enter destination: ";
                 cin>>destinationType;
                 
-                destination = convertToDestination(destinationType);
+                destination = convertToDestinationDistance(destinationType);
                 
                 if(destinationType >= '1' && destinationType <= '7')
                 {
                     discountTypeList();
 
-                    if(askDate == 'y')
-                    {
-                        storeDate[countDate] = takeDate; // store the date in the array storeDate 
-                        countDate++;
-                    }
-
+                    storeDate[countDate] = takeDate; // store the date in the array storeDate 
+                    
                     cout<<"Choice: ";
                     cin>>typeOfDiscount;
                     
@@ -252,7 +297,10 @@ int main()
                     for(r = 0; r < 4; r++) 
                     {
                         if(seatAssigned)
-                        break; // stop if already assigned
+                        {
+                            break; // stop if already assigned
+                        }
+                        
                         
                         for(c = 0; c < 5; c++) 
                         {
@@ -277,35 +325,11 @@ int main()
 
                     cout<<endl<<"Total fare is P"<<fareTotal<<endl;
 
-                    if(destinationType == '1') 
-                    {
-                        storeDestinationName[countDestination] = "SM      ";
-                    } 
-                    else if(destinationType == '2') 
-                    {
-                        storeDestinationName[countDestination] = "PACIFIC ";
-                    } 
-                    else if(destinationType == '3') 
-                    {
-                        storeDestinationName[countDestination] = "SUMACAB ";
-                    } 
-                    else if(destinationType == '4') 
-                    {
-                        storeDestinationName[countDestination] = "STAROSA ";
-                    } 
-                    else if(destinationType == '5') 
-                    {
-                        storeDestinationName[countDestination] = "ZARAGOZA";
-                    } 
-                    else if(destinationType == '6') 
-                    {
-                        storeDestinationName[countDestination] = "LAPAZ   ";
-                    } 
-                    else if(destinationType == '7') 
-                    {
-                        storeDestinationName[countDestination] = "TARLAC  ";
-                    } 
+                    destinationName = convertToDestinationName(destinationType);
 
+                    storeDestinationName[countDestination] = destinationName;
+
+                    countDate++;
                     countDestination++;
                     storeFareTotal[countFare] += fareTotal;
                     countFare++;
