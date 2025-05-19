@@ -1,17 +1,5 @@
 #include <iostream>
-#include <cstdlib>// ni revise ko yung code para di masyado mahaba
-
-/* 
-    2 void ✅
-    1 function return ❎ 2 pa
-    1 for loop ✅
-    1 do while loop ✅
-    1 while loop ✅
-    1 one dimentional ✅
-    1 switch ✅ pero may sobrang isa ❎
-    1 nested ✅?
-    1 bi dimentional ❎ 
-*/
+#include <cstdlib>
 
 #define SENIOR 0.30
 #define PWD 0.25
@@ -52,8 +40,8 @@ void showDestinationList()
     cout<<"4. Sta Rosa"<<endl;
     cout<<"5. Zaragoza"<<endl;
     cout<<"6. La Paz"<<endl;
-    cout<<"7. Tarlac City"<<endl; 
-    cout<<"8. Back"<<endl; 
+    cout<<"7. Tarlac City"<<endl;
+    cout<<"8. Back"<<endl;
 }
 
 void showDiscountTypeList()
@@ -66,9 +54,9 @@ void showDiscountTypeList()
     cout<<"4. None"<<endl;
 }
 
-double convertToDestinationDistance(char destinationTypeDistance) 
+double convertToDestinationDistance(char destinationTypeDistance)
 {
-    switch(destinationTypeDistance) 
+    switch(destinationTypeDistance)
     {
         case '1':
             return SM;
@@ -108,49 +96,49 @@ double convertToDestinationDistance(char destinationTypeDistance)
 string convertToDestinationName(char destinationTypeName)
 {
     string desName;
-    
-    if(destinationTypeName == '1') 
+
+    if(destinationTypeName == '1')
     {
         desName = "SM      ";
 
         return desName;
-    } 
-    else if(destinationTypeName == '2') 
+    }
+    else if(destinationTypeName == '2')
     {
         desName = "PACIFIC ";
 
         return desName;
-    } 
-    else if(destinationTypeName == '3') 
+    }
+    else if(destinationTypeName == '3')
     {
         desName = "SUMACAB ";
 
         return desName;
-    } 
-    else if(destinationTypeName == '4') 
+    }
+    else if(destinationTypeName == '4')
     {
         desName = "STAROSA ";
 
         return desName;
-    } 
-    else if(destinationTypeName == '5') 
+    }
+    else if(destinationTypeName == '5')
     {
         desName = "ZARAGOZA";
 
         return desName;
-    } 
-    else if(destinationTypeName == '6') 
+    }
+    else if(destinationTypeName == '6')
     {
         desName = "LAPAZ   ";
 
         return desName;
-    } 
-    else if(destinationTypeName == '7') 
+    }
+    else if(destinationTypeName == '7')
     {
         desName = "TARLAC  ";
 
         return desName;
-    } 
+    }
 
     return desName;
 }
@@ -159,11 +147,11 @@ double calculateTotalFare(double placeDest, int typeDisc)
 {
     double fare;
 
-    if(placeDest >= baseDistance) 
+    if(placeDest >= baseDistance)
     {
         fare = baseFare + (placeDest - baseDistance) * additionalRate;
     }
-    else if(placeDest == INVALID_DESTINATION) 
+    else if(placeDest == INVALID_DESTINATION)
     {
         return 0;
     }
@@ -171,20 +159,20 @@ double calculateTotalFare(double placeDest, int typeDisc)
     {
         fare = baseFare;
     }
-    
+
     switch(typeDisc)
     {
         case 1:
             fare = fare - (fare * SENIOR);
-        
+
             break;
         case 2:
             fare = fare - (fare * PWD);
-        
+
             break;
         case 3:
             fare = fare - (fare * STUDENT);
-        
+
             break;
         default:
             // default discount type none if tinayp na discount is greater than or equal to 4
@@ -199,48 +187,48 @@ int main()
     int menuChoice, countDate = 0;
     char askDate;
     string storeDate[256];
-    string takeDate; // var for dates
+    string takeDate; // var related to dates
 
     char destinationType;
     double destination; // destination becomes SM, etc
     string destinationName;
     string storeDestinationName[256];
-    int countDestination = 0;
-    
+    int countDestination = 0; // var related to destination
+
     int typeOfDiscount;
     double fareTotal;
     double storeFareTotal[256];
-    int countFare = 0;
-    
+    int countFare = 0; // var for related to fare
+
     int countLimit = 0;
     int i; // used for loop iteration
 
     int r, c;
     string assignedSeat;
-    bool seatsArray[4][5]; // pwede maging void
-    char rowLetter; 
+    bool seatsArray[4][5];
+    char rowLetter;
     bool seatAssigned;
-    int columnNumber;
+    int columnNumber; // var related to seats
 
-    for(r = 0; r < 4; r++) 
+    for(r = 0; r < 4; r++)
     {
-        for(c = 0; c < 5; c++) 
+        for(c = 0; c < 5; c++)
         {
             seatsArray[r][c] = true;
         }
     }
 
-    for(i = 0; i < 256; i++) 
+    for(i = 0; i < 256; i++)
     {
         storeFareTotal[i] = 0.00;
-    } 
-    
-    for(i = 0; i < 256; i++) 
+    }
+
+    for(i = 0; i < 256; i++)
     {
         storeDate[i] = "No date yet";
         storeDestinationName[i] = "No place yet";
-    } 
-    
+    }
+
     while(menuChoice != 4)
     {
         showMenu();
@@ -252,15 +240,15 @@ int main()
         {
             while(askDate != 'y' || askDate != 'n')
             {
-                cout<<"New date (y/n): ";
+                cout<<"New date? (y/n): ";
                 cin>>askDate;
 
                 askDate = tolower(askDate);
 
                 if(askDate == 'y')
                 {
-                    cout<<"Enter date: ";
-                    cin>>takeDate;// store the date in the array storeDate 
+                    cout<<"Enter date (YYYY.MM.DD): ";
+                    cin>>takeDate; // store the date in the array storeDate
                     break;
                 }
                 else if(askDate == 'n')
@@ -273,49 +261,50 @@ int main()
                     cout<<"Invalid answer try again"<<endl<<endl;
                 }
             }
-            
+
             do
             {
                 showDestinationList();
 
                 cout<<"Enter destination: ";
                 cin>>destinationType;
-                
+
                 destination = convertToDestinationDistance(destinationType);
-                
+
                 if(destinationType >= '1' && destinationType <= '7')
                 {
                     showDiscountTypeList();
 
-                    storeDate[countDate] = takeDate; // store the date in the array storeDate 
-                    
+                    storeDate[countDate] = takeDate; // store the date in the array storeDate
+
                     cout<<"Choice: ";
                     cin>>typeOfDiscount;
-                    
+
                     assignedSeat = ""; // available seats start
                     seatAssigned = false;
-                    for(r = 0; r < 4; r++) 
+                    for(r = 0; r < 4; r++)
                     {
                         if(seatAssigned)
                         {
                             break; // stop if already assigned
                         }
-                        
-                        
-                        for(c = 0; c < 5; c++) 
+
+                        for(c = 0; c < 5; c++)
                         {
-                            if(seatsArray[r][c]) 
+                            if(seatsArray[r][c])
                             {
                                 seatsArray[r][c] = false;
                                 rowLetter = 'A' + r;
                                 columnNumber = '1' + c;
-                                
+
                                 assignedSeat += rowLetter;
                                 assignedSeat += columnNumber;
-                                
+
+                                cout<<endl;
                                 cout<<"Seat "<<assignedSeat<<" automatically assigned."<<endl;
+
                                 seatAssigned = true;
-                                
+
                                 break; //to exit inner loop after assignment
                             }
                         }
@@ -323,7 +312,9 @@ int main()
 
                     fareTotal = calculateTotalFare(destination, typeOfDiscount);
 
-                    cout<<endl<<"Total fare is P"<<fareTotal<<endl;
+                    cout<<"================================="<<endl;
+                    cout<<"|    --> Total fare is P"<<fareTotal<<" \t|"<<endl;
+                    cout<<"================================="<<endl;
 
                     destinationName = convertToDestinationName(destinationType);
 
@@ -334,7 +325,7 @@ int main()
                     storeFareTotal[countFare] += fareTotal;
                     countFare++;
                     countLimit++;
-                } 
+                }
                 else if(destinationType == '8')
                 {
                     cout<<endl;
@@ -349,47 +340,50 @@ int main()
         {
             cout<<endl;
             cout<<"Date\t\t\tPlace\t\t\tPrice"<<endl;
-            cout<<"——————————————————————————————————————————————————————"<<endl;
+            cout<<"======================================================="<<endl;
             for(i = 0; i <= countLimit; i++)
             {
                 cout<<storeDate[i]<<"   "<<"\t|\t"<<storeDestinationName[i]<<"   "<<"\t|\t"<<storeFareTotal[i]<<endl;
             }
 
             cout<<endl;
-        } 
+        }
         else if(menuChoice == 3)
         {
             cout<<endl;
-            cout<<"Seat Availability:"<<endl;
-            
-            for(r = 0; r < 4; r++) 
+            cout<<"Seat Availability (A = Available, O = Occupied):"<<endl<<endl;
+            for(r = 0; r < 4; r++)
             {
-                for(c = 0; c < 5; c++) 
+                for(c = 0; c < 5; c++)
                 {
-                    rowLetter = 'A' + r; // boi ganto sinasabi ko
-                    columnNumber = c + 1;
+                    rowLetter = 'A' + r;
+                    columnNumber = 1 + c;
 
                     cout<<rowLetter<<columnNumber<<": ";
-
-                    if(seatsArray[r][c]) 
+                    if(seatsArray[r][c])
                     {
-                        cout<<"Available";
-                    } 
-                    else 
-                    {
-                        cout<<"Occupied";
+                        cout<<"A  |  ";
                     }
+                    else
+                    {
+                        cout<<"O  |  ";
+                    }
+                }
 
-                    cout<<endl;
-                } 
-
-                cout<<endl;
+                cout<<endl<<endl;
             }
+
+            cout<<endl;
+        }
+        else if(menuChoice == 4)
+        {
+            cout<<"Thank you!"<<endl<<endl;
         }
         else
         {
-            cout<<"Thank you!"<<endl;
-            break;
+            cout<<endl;
+            cout<<"Invalid input. Try again."<<endl;
+
         }
     } // end of while loop menu choice
 
